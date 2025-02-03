@@ -65,7 +65,7 @@ const RecruiterLogin = () => {
         {state === "Login" && <p className='text-sm text-blue-600 mt-4 cursor-pointer'>Forgot Password?</p>}
 
         <button type='submit' className='bg-blue-600 w-full text-white py-2 rounded-full mt-4'>
-          {state === "Login" ? "login" : isTextDataSubmitted ? "create account" : "next"}
+          {state === "Login" ? "Login" : isTextDataSubmitted ? "Create account" : "Next"}
         </button>
         
         {
