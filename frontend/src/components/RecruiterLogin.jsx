@@ -62,16 +62,16 @@ const RecruiterLogin = () => {
             </div>
           </>
         }
-        {state === "Login" && <p className='text-sm text-blue-600 mt-4 cursor-pointer'>Forgot Password?</p>}
+        {state === "Login" && <p className='text-sm text-green-600 mt-4 cursor-pointer'>Forgot Password?</p>}
 
-        <button type='submit' className='bg-blue-600 w-full text-white py-2 rounded-full mt-4'>
+        <button type='submit' className='bg-emerald-600 w-full text-white py-2 rounded-full mt-4'>
           {state === "Login" ? "Login" : isTextDataSubmitted ? "Create account" : "Next"}
         </button>
         
         {
           state === "Login" 
-          ?<p className='mt-5 text-center'>Don't have an account? <span className='text-blue-600 cursor-pointer' onClick={() => setState("Sign Up")}>Sign Up</span></p>
-          :<p className='mt-5 text-center'>Already have an account? <span className='text-blue-600 cursor-pointer' onClick={() => setState("Login")}>Login</span></p>
+          ?<p className='mt-5 text-center'>Don't have an account? <span className='text-green-600 cursor-pointer underline' onClick={() => setState("Sign Up")}>Sign Up</span></p>
+          :<p className='mt-5 text-center'>Already have an account? <span className='text-green-600 cursor-pointer underline' onClick={() => setState("Login")}>Login</span></p>
         }
 
         <img onClick={e => setShowRecruiterLogin(false)} className='absolute top-5 right-5 cursor-pointer' src={assets.cross_icon} alt="" />

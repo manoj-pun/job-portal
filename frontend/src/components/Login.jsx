@@ -40,16 +40,16 @@ const Login = () => {
                 </div>
             </>
 
-            {state === "Login" && <p className='text-sm text-indigo-500 mt-4 cursor-pointer'>Forgot Password?</p>}
+            {state === "Login" && <p className='text-sm text-green-500 mt-4 cursor-pointer'>Forgot Password?</p>}
 
-            <button type='submit' className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full text-white py-2 rounded-full mt-4'>
+            <button type='submit' className='bg-emerald-600 w-full text-white py-2 rounded-full mt-4'>
                 {state === "Login" ? "Login" : "Create account"}
             </button>
             
             {
                 state === "Login" 
-                ?<p className='mt-5 text-center'>Don't have an account? <span className='text-blue-400 cursor-pointer underline' onClick={() => setState("Sign Up")}>Sign Up</span></p>
-                :<p className='mt-5 text-center'>Already have an account? <span className='text-blue-400 cursor-pointer underline' onClick={() => setState("Login")}>Login</span></p>
+                ?<p className='mt-5 text-center'>Don't have an account? <span className='text-green-400 cursor-pointer underline' onClick={() => setState("Sign Up")}>Sign Up</span></p>
+                :<p className='mt-5 text-center'>Already have an account? <span className='text-green-400 cursor-pointer underline' onClick={() => setState("Login")}>Login</span></p>
             }
 
             <img onClick={e => setShowLogin(false)} className='absolute top-5 right-5 cursor-pointer' src={assets.cross_icon} alt="" />
