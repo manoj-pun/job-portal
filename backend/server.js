@@ -5,6 +5,7 @@ import connectDb from "./config/db.js";
 import * as Sentry from "@sentry/node";
 import authRoutes from "./routes/authRoutes.js"
 import companyRoutes from "./routes/companyRoutes.js"
+import connectCloudinary from "./config/cloudinary.js";
 
 //Initialize express
 const app = express()
@@ -14,7 +15,12 @@ const PORT = process.env.PORT || 3000
 // connecting database
 connectDb();
 
+//connection cloudinay
+connectCloudinary();
+
 //middlerwares
+// This parses incoming JSON requests and makes the data available in req.body.
+app.use(express.json()); 
 
 //routes
 app.get("/",(req,res) => {

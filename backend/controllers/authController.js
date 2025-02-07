@@ -1,14 +1,12 @@
-import User from "../models/userModel.js";
+import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import generateToken from "../utils/generateToken.js";
 
 //Register a new user
 export const registerUser = async(req,res) => {
     const {name, email, password} = req.body
 
-    const imageFile = req.file;
-
-    if(!name || !email || !password || !imageFile){
+    if(!name || !email || !password){
         return res.json({success: false ,message: "Missing details"});
     }
 
@@ -21,13 +19,10 @@ export const registerUser = async(req,res) => {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password,salt);
 
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path);
-
         const user = await userModel.create({
             name,
             email,
             password:hashPassword,
-            image:imageUpload.secure_url
         });
 
         res.json({
@@ -36,7 +31,6 @@ export const registerUser = async(req,res) => {
                 _id:user._id,
                 name:user.name,
                 email:user.email,
-                image:user.image
             },
             token: generateToken(user._id)
         })
@@ -51,23 +45,26 @@ export const loginUser = async(req,res) => {
     const {email,password} = req.body;
 
     try{
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({email})
+        // console.log(user)
+        if(!user){
+            return res.json({success:false, message:"User not registered.Please sign up."});
+        }
 
-        if(await bcrypt.compare(password,user.password)){
+        if(bcrypt.compare(password,user.password)){
             res.json({
                 success:true,
-                user:{
+                company:{
                     _id:user._id,
                     name:user.name,
                     email:user.email,
-                    image:user.image
                 },
                 token: generateToken(user._id)
             })
         }else{
-            res.json({success:false, message:"Invalid email or password"})
+            res.json({success:false,message:"Invalid email or password"})
         }
-    }catch(error) {
+    }catch(error){
         res.json({success:false,message:error.message})
     }
 }
