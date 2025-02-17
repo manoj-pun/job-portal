@@ -83,8 +83,6 @@ export const loginCompany = async(req,res) => {
 
 //get company data
 export const getCompanyData = async(req,res) => {
-    const company = req.company
-
     try {
         const company = req.company
 
@@ -128,7 +126,18 @@ export const getCompanyJobApplicants = async(req,res) => {
 
 //get company posted jobs
 export const getCompanyPostedJobs = async(req,res) => {
+    try {
+        const companyId = req.company._id
 
+        const jobs = await jobModel.find({companyId})
+
+        //(todo) adding no. of applicants info in data
+
+        res.json({success:true,jobsData:jobs})
+
+    } catch (error) {
+        res.json({success:false,message:error.message})
+    }
 }
 
 //change job application status

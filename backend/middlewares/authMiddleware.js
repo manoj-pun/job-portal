@@ -16,7 +16,7 @@ export const protectCompany = async(req,res,next) => {
         // console.log(decoded)
 
         req.company = await companyModel.findById(decoded.id).select("-password")
-        // console.log(req.company)
+        console.log(req.company)
 
         next()
     }catch(error){
