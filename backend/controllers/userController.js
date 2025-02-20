@@ -56,7 +56,7 @@ export const getUserJobApplications = async(req,res) => {
         const userId = req.user._id
 
         const applications = await jobApplicationModel.find({userId})
-        .populate("companyId","name email image")
+        .populate("companyId","name image email")
         .populate("jobId","title description location category level salary")
         .exec()
 
@@ -75,7 +75,7 @@ export const updateUserResume = async(req,res) => {
     try {
         const userId = req.user._id
 
-        const resumeFile = req.resumeFile
+        const resumeFile = req.file
 
         const userData = await userModel.findById(userId)
 

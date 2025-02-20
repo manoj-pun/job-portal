@@ -51,10 +51,10 @@ export const loginUser = async(req,res) => {
             return res.json({success:false, message:"User not registered.Please sign up."});
         }
 
-        if(bcrypt.compare(password,user.password)){
+        if(await bcrypt.compare(password,user.password)){
             res.json({
                 success:true,
-                company:{
+                user:{
                     _id:user._id,
                     name:user.name,
                     email:user.email,
