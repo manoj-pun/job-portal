@@ -28,8 +28,8 @@ const App = () => {
         <Route path="/applications" element={<Applications/>} />
         <Route path="/dashboard" element={<Dashboard/>}>
           {companyToken ? <>
-            <Route path='add-job' element={<AddJob/>} />
-            <Route path='manage-job' element={<ManageJob/>} />
+            <Route path='add-jobs' element={<AddJob/>} />
+            <Route path='manage-jobs' element={<ManageJob/>} />
             <Route path='view-applications' element={<ViewApplication/>} />
           </> : null
           }

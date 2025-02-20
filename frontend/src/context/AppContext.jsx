@@ -34,7 +34,7 @@ export const AppContextProvider = (props) => {
     const fetchCompanyData = async() => {
         try {
             const {data} = await axios.get(backendUrl+"/api/company/company",{headers:{token:companyToken}})
-            console.log(data)
+            // console.log(data)
             if(data.success){
                 setCompanyData(data.company)
             }else{
