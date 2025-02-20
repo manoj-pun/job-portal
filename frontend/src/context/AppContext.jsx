@@ -33,7 +33,7 @@ export const AppContextProvider = (props) => {
       const { data } = await axios.get(backendUrl + "/api/jobs");
       if (data.success) {
         setJobs(data.jobs);
-        console.log(data.jobs);
+        // console.log(data.jobs);
       } else {
         toast.error(data.message);
       }
@@ -76,6 +76,20 @@ export const AppContextProvider = (props) => {
     }
   };
 
+  //function to fetch users applied applications data
+  const fetchUserApplications = async() => {
+    try {
+        const {data} =await axios.get(backendUrl+"/api/users/applications",{headers:{token:userToken}})
+        if(data.success){
+            setUserApplications(data.applications)
+        }else{
+            toast.error(data.message)
+        }
+    } catch (error) {
+        toast.error(error.message)
+    }
+  }
+
   useEffect(() => {
     fetchJobs();
 
@@ -101,6 +115,7 @@ export const AppContextProvider = (props) => {
   useEffect(() => {
     if (userToken) {
       fetchUserData();
+      fetchUserApplications();
     }
   }, [userToken]);
 
@@ -115,6 +130,9 @@ export const AppContextProvider = (props) => {
     backendUrl,
     userToken,setUserToken,
     userData,setUserData,
+    userApplications,setUserApplications,
+    fetchUserData,
+    fetchUserApplications
   };
 
   return (
