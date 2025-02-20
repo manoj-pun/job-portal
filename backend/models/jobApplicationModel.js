@@ -17,7 +17,7 @@ const jobApplicationSchema = new mongoose.Schema({
         required:true
     },
     status:{
-        types:String,
+        type:String,
         default:"Pending"
     },
     date:{

@@ -43,7 +43,7 @@ export const registerCompany = async(req,res) => {
                 email:company.email,
                 image:company.image
             },
-            token:generateToken(company.name)
+            token:generateToken(company._id)
         })
 
     } catch (error) {
@@ -62,7 +62,7 @@ export const loginCompany = async(req,res) => {
             return res.json({success:false, message:"Company not registered.Please sign up."});
         }
 
-        if(bcrypt.compare(password,company.password)){
+        if(await bcrypt.compare(password,company.password)){
             res.json({
                 success:true,
                 company:{

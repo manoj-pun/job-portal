@@ -1,5 +1,6 @@
 import "./config/instrument.js";
 import express from "express";
+import cors from "cors"
 import "dotenv/config";
 import connectDb from "./config/db.js";
 import * as Sentry from "@sentry/node";
@@ -21,6 +22,7 @@ connectDb();
 connectCloudinary();
 
 //middlerwares
+app.use(cors());
 // This parses incoming JSON requests and makes the data available in req.body.
 app.use(express.json()); 
 
