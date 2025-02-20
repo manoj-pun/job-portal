@@ -42,7 +42,7 @@ const Login = () => {
 
             {state === "Login" && <p className='text-sm text-green-500 mt-4 cursor-pointer'>Forgot Password?</p>}
 
-            <button type='submit' className='bg-emerald-600 w-full text-white py-2 rounded-full mt-4'>
+            <button type='submit' className='bg-emerald-600 w-full text-white py-2 rounded-full mt-4 cursor-pointer'>
                 {state === "Login" ? "Login" : "Create account"}
             </button>
             
